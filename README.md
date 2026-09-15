@@ -60,8 +60,7 @@ The CSP keeps `'unsafe-inline'` for scripts and styles because `index.html` uses
 hashes do not cover inline event handlers. Moving those handlers to `addEventListener` is the
 prerequisite for tightening it, and is the one worthwhile follow-up on this page.
 
-## Related
+## Scope
 
-The demo applications that used to share a repository and a VPS with this site live in
-[`demosites`](https://github.com/lukislp/demosites) and continue to run on the Hostinger VPS
-behind Caddy — they are containers and cannot be served from Pages.
+Only the site lives here. The demo applications that used to share a repository and a server with
+it are containers behind a reverse proxy, stay on their own VPS, and are maintained separately.
