@@ -66,3 +66,18 @@ prerequisite for tightening it, and is the one worthwhile follow-up on this page
 
 Only the site lives here. The demo applications that used to share a repository and a server with
 it are containers behind a reverse proxy, stay on their own VPS, and are maintained separately.
+
+## Licence
+
+Two different things live in this repository, and they are covered separately.
+
+**The code is MIT**, see [LICENSE](LICENSE). That is `tools/check-site.py`, the markup and
+stylesheet scaffolding, the response headers in `public/_headers` and the workflows. Reuse any of
+it; the site checker and the header set in particular are meant to be liftable.
+
+**The content is not.** The prose, the curriculum vitae text, the project descriptions and the
+images are copyright 2026 Lukas Koerber, all rights reserved. Please do not republish them, whole
+or in part, as your own.
+
+GitHub shows a single licence badge for a repository and will report this one as MIT, which is
+why the distinction is spelled out here rather than left to the badge.
