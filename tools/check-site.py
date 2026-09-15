@@ -120,7 +120,15 @@ def resolve(root: Path, page: Path, raw: str) -> Path | None:
         return None
     target = root / path.lstrip("/") if path.startswith("/") else page.parent / path
     target = Path(unquote(str(target)))
-    return target / "index.html" if str(target).endswith(("/", "\\")) else target
+    if str(target).endswith(("/", "\\")):
+        return target / "index.html"
+    # Cloudflare Pages serves HTML without the extension and 308-redirects "/x.html" to "/x",
+    # so the canonical internal link "/impressum" has to resolve to public/impressum.html.
+    if not target.suffix and not target.exists():
+        with_html = target.with_name(target.name + ".html")
+        if with_html.exists():
+            return with_html
+    return target
 
 
 def check_page(root: Path, page: Path) -> None:

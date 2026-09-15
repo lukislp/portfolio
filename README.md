@@ -28,8 +28,10 @@ python3 -m http.server 8000 --directory public
 # http://localhost:8000
 ```
 
-`_headers` is a Cloudflare Pages feature and is ignored by the local server, so headers can only
-be verified on a deployed preview.
+Two things only exist on a deployed Pages URL, not in the local server: `_headers` is a Pages
+feature and is ignored here, and Pages serves pages without the `.html` extension, so the
+`/impressum` link 404s locally while working in production. Both are verified on the preview
+deployment a pull request produces.
 
 ## Checks
 
