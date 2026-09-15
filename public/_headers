@@ -15,7 +15,15 @@
 
 # Fingerprinted assets are not used here, so keep the cache short enough that a content fix is
 # visible quickly, and let the CDN revalidate rather than serve a stale page.
-/*.html
+# Pages serves HTML pages without the .html extension and redirects the extension away, so these
+# rules have to name the served paths - a "/*.html" pattern would match none of them.
+/
+  Cache-Control: public, max-age=300, must-revalidate
+
+/impressum
+  Cache-Control: public, max-age=300, must-revalidate
+
+/404.html
   Cache-Control: public, max-age=300, must-revalidate
 
 /og-image.png
