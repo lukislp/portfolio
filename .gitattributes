@@ -1,0 +1,4 @@
+# Normalise to LF in the repository regardless of the checkout platform. Matters for
+# public/_headers in particular: Cloudflare Pages parses it line by line.
+* text=auto eol=lf
+*.png binary
