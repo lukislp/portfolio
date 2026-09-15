@@ -1,0 +1,29 @@
+name: Bug report
+description: Something on the site is broken or does not match the documentation
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The URL it happens on (for example https://lktec.org/ or /impressum), or the file under public/.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device
+      description: Browser and version, and whether it is desktop or mobile. Say so if it only happens in one language.
+  - type: textarea
+    id: details
+    attributes:
+      label: Console output or screenshots
+      description: Relevant console errors or a screenshot. Please remove tokens and personal data.
+      render: text
