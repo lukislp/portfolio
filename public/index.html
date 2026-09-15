@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lukas Körber — Data Engineer & B.Sc.-Student Angewandte KI</title>
+<meta name="description" content="Portfolio von Lukas Körber — B.Sc.-Student Angewandte Künstliche Intelligenz & Softwareentwickler. .NET, React, Kubernetes, Data Warehousing und AI Engineering.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://lktec.org/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lktec.org/">
+<meta property="og:site_name" content="Lukas Körber">
+<meta property="og:title" content="Lukas Körber — Data Engineer & B.Sc.-Student Angewandte KI">
+<meta property="og:description" content="Portfolio von Lukas Körber — B.Sc.-Student Angewandte Künstliche Intelligenz & Softwareentwickler. .NET, React, Kubernetes, Data Warehousing und AI Engineering.">
+<meta property="og:image" content="https://lktec.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lukas Körber — Data Engineer & B.Sc.-Student Angewandte KI">
+<meta name="twitter:description" content="Portfolio von Lukas Körber — B.Sc.-Student Angewandte Künstliche Intelligenz & Softwareentwickler. .NET, React, Kubernetes, Data Warehousing und AI Engineering.">
+<meta name="twitter:image" content="https://lktec.org/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Lukas Körber",
+  "url": "https://lktec.org/",
+  "email": "mailto:koerber.lukas@t-online.de",
+  "jobTitle": "Data Warehouse Developer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Witron Logistik + Informatik GmbH"
+  },
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "IU Internationale Hochschule"
+  },
+  "knowsAbout": ["Data Warehousing", ".NET", "React", "Kubernetes", "Artificial Intelligence", "AI Engineering"],
+  "sameAs": ["https://github.com/lukislp"]
+}
+</script>
+<style>
+:root{
+  --bg:#0b0f14;--bg2:#0f151d;--card:#131b25;--card2:#18222e;
+  --text:#e6edf3;--muted:#8b98a9;--line:#1f2a37;
+  --accent:#4fd1c5;--accent2:#7c6cf0;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',sans-serif;line-height:1.6;overflow-x:hidden}
+::selection{background:rgba(79,209,197,.3)}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(11,15,20,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:20px}
+.logo{font-weight:800;font-size:1.05rem;letter-spacing:.5px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:22px;margin-left:auto}
+.nav-links a{position:relative;color:var(--muted);font-size:.92rem;padding-bottom:6px;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--accent);font-weight:700}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.lang-toggle{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-left:18px}
+.lang-toggle button{background:none;border:none;color:var(--muted);padding:5px 12px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s}
+.lang-toggle button.active{background:var(--accent);color:#04211d}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:6px;margin-left:8px}
+.nav-toggle svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+@media(max-width:760px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:4px;background:var(--bg2);border-bottom:1px solid var(--line);padding:14px 24px 20px;margin-left:0}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:10px 0}
+  .lang-toggle{margin-left:auto}
+  .nav-toggle{display:block}
+}
+
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;background:radial-gradient(ellipse 60% 50% at 70% 20%,rgba(124,108,240,.12),transparent),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(79,209,197,.10),transparent)}
+.hero-content{padding-top:80px}
+.hero .kicker{color:var(--accent);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.85rem;margin-bottom:14px}
+.hero h1{font-size:clamp(2.4rem,7vw,4.2rem);font-weight:800;line-height:1.1;margin-bottom:18px}
+.hero h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:clamp(1.05rem,2.5vw,1.3rem);color:var(--muted);max-width:640px;margin-bottom:28px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 16px;font-size:.85rem;color:var(--muted)}
+.chip b{color:var(--accent);font-weight:600}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:12px 24px;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.btn-primary{background:linear-gradient(90deg,var(--accent),#38b2ac);color:#04211d}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(79,209,197,.25)}
+.btn-ghost{border:1px solid var(--line);color:var(--text);background:var(--card)}
+.btn-ghost:hover{border-color:var(--accent);transform:translateY(-2px)}
+.avatar{width:120px;height:120px;border-radius:28px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:800;color:#0b0f14;margin-bottom:30px;box-shadow:0 10px 50px rgba(124,108,240,.35)}
+
+section{padding:90px 0}
+.sec-title{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin-bottom:8px}
+.sec-title span{color:var(--accent)}
+.sec-sub{color:var(--muted);margin-bottom:42px;max-width:640px}
+.fade{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade.vis{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about-text p{color:#c3cdd9;margin-bottom:16px}
+.about-facts{display:flex;flex-direction:column;gap:14px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;display:flex;gap:14px;align-items:flex-start}
+.fact .ico{line-height:1}
+.fact .ico svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.fact b{display:block;font-size:.95rem}
+.fact small{color:var(--muted)}
+
+.timeline{position:relative;margin-left:8px;padding-left:30px;border-left:2px solid var(--line)}
+.tl-item{position:relative;padding-bottom:34px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-39px;top:6px;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 4px rgba(79,209,197,.15)}
+.tl-item .when{color:var(--accent);font-size:.83rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.tl-item h3{font-size:1.05rem;margin:4px 0 2px}
+.tl-item .where{color:var(--muted);font-size:.9rem;margin-bottom:8px}
+.tl-item p{color:#b7c2cf;font-size:.92rem;max-width:700px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.skill-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.skill-card h3{font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.skill-card h3 .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:var(--card2);border:1px solid var(--line);border-radius:7px;padding:4px 11px;font-size:.82rem;color:#b7c2cf}
+
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.filter{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:7px 18px;font-size:.87rem;cursor:pointer;transition:all .2s;font-weight:600}
+.filter:hover{color:var(--text)}
+.filter.active{background:var(--accent);border-color:var(--accent);color:#04211d}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.sub-group{grid-column:1/-1;display:flex;flex-direction:column;gap:20px}
+.sub-group+.sub-group{margin-top:8px}
+.sub-heading{grid-column:1/-1;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:8px}
+.sub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.proj:hover{transform:translateY(-5px);border-color:rgba(79,209,197,.5);box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.proj .head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.proj h3{font-size:1.08rem}
+.proj .cat{font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--accent);white-space:nowrap;padding-top:4px}
+.proj p{color:var(--muted);font-size:.92rem;flex:1}
+.proj .tags .tag{font-size:.76rem;padding:3px 9px}
+.proj-links{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;margin-top:4px;padding-top:16px;border-top:1px solid var(--line)}
+.proj-links a{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:.82rem;font-weight:600;transition:color .2s}
+.proj-links a:hover{color:var(--accent)}
+
+.hl-wrap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px;position:relative;overflow:hidden}
+.hl-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 40% 60% at 90% 10%,rgba(124,108,240,.10),transparent);pointer-events:none}
+.hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:10px}
+.hl-item{display:flex;gap:14px;align-items:flex-start}
+.hl-item .ico{font-size:1.5rem}
+.hl-item b{display:block;margin-bottom:2px;font-size:.97rem}
+.hl-item small{color:var(--muted);font-size:.87rem}
+
+.contact-box{text-align:center;max-width:560px;margin:0 auto}
+.contact-box .links{display:flex;gap:16px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.85rem}
+.foot-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.foot-inner a{color:var(--muted)}
+.foot-inner a:hover{color:var(--text)}
+.gh-ico{width:20px;height:20px;fill:currentColor;vertical-align:-4px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">lk<span>tec</span></div>
+    <div class="nav-links">
+      <a href="#about" data-i18n="nav_about">Über mich</a>
+      <a href="#career" data-i18n="nav_career">Werdegang</a>
+      <a href="#skills" data-i18n="nav_skills">Skills</a>
+      <a href="#projects" data-i18n="nav_projects">Projekte</a>
+      <a href="#homelab" data-i18n="nav_homelab">Homelab</a>
+      <a href="#contact" data-i18n="nav_contact">Kontakt</a>
+    </div>
+    <div class="lang-toggle">
+      <button id="btn-de" class="active" onclick="setLang('de')">DE</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" onclick="toggleNav()">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-content">
+    <div class="avatar">LK</div>
+    <div class="kicker" data-i18n="hero_kicker">Data Engineer &amp; B.Sc.-Student Angewandte KI</div>
+    <h1>Lukas <span class="grad">Körber</span></h1>
+    <p class="sub" data-i18n="hero_sub">Data Engineer mit über 4 Jahren Erfahrung im Aufbau und Betrieb von Enterprise-Data-Warehouse-Systemen. Berufsbegleitend studiere ich Angewandte Künstliche Intelligenz (B.Sc.), entwickle Full-Stack-Anwendungen mit .NET und React und betreibe mein eigenes Kubernetes-Homelab.</p>
+    <div class="chips">
+      <div class="chip"><b>C#</b> / .NET</div>
+      <div class="chip"><b>React</b> / TypeScript</div>
+      <div class="chip"><b>Kubernetes</b> / k3s</div>
+      <div class="chip"><b>Data</b> Warehouse</div>
+      <div class="chip"><b>AI</b> Engineering</div>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects" data-i18n="hero_cta1">Projekte ansehen</a>
+      <a class="btn btn-ghost" href="https://github.com/lukislp" target="_blank" rel="noopener">
+        <svg class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <h2 class="sec-title fade" data-i18n="about_title">Über <span>mich</span></h2>
+    <div class="about-grid">
+      <div class="about-text fade">
+        <p data-i18n="about_p1">Ich arbeite als Data-Warehouse-Developer bei der Witron Logistik + Informatik GmbH und baue dort seit 2021 Enterprise-DWH-Lösungen für internationale Kunden: ETL-Pipelines (Stage/Core/Mart), verteilte Monitoring-Plattformen mit React, C# und Blazor sowie Backend-Services für Datenverarbeitung, Fehlererkennung und automatisiertes Recovery — mit Python, C#, Oracle und Kafka.</p>
+        <p data-i18n="about_p2">Berufsbegleitend studiere ich Angewandte Künstliche Intelligenz (B.Sc.) an der IU Internationalen Hochschule. Mein klares Ziel: als AI Engineer KI-Systeme von der Idee bis in die Produktion bringen — LLM-Integration, RAG-Systeme, Modell-Deployment und MLOps. Erste Schritte gehe ich schon heute: Anomalie-Erkennung mit ML.NET, lokale LLMs mit Ollama in eigenen Anwendungen und die Ops-Erfahrung aus vier Jahren Betrieb verteilter Produktionssysteme.</p>
+        <p data-i18n="about_p3">Was mich von vielen unterscheidet: Ich betreibe meine Software selbst. Mein Homelab mit k3s-Kubernetes-Cluster, eigenem Mailserver, GitLab und Monitoring ist meine Spielwiese für Produktionsbetrieb — Deployment, TLS, DNS, Backups und alles, was dazwischen schiefgehen kann.</p>
+      </div>
+      <div class="about-facts fade">
+        <div class="fact"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18"/></svg></div><div><b data-i18n="fact1_t">4+ Jahre Berufserfahrung</b><small data-i18n="fact1_s">Data-Warehouse-Developer bei Witron Logistik + Informatik</small></div></div>
+        <div class="fact"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 1 8l11 5 9-4.09V15"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5"/></svg></div><div><b data-i18n="fact2_t">B.Sc. Angewandte KI</b><small data-i18n="fact2_s">Berufsbegleitendes Studium an der IU Internationalen Hochschule</small></div></div>
+        <div class="fact"><div class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div><div><b data-i18n="fact3_t">Ziel: AI Engineer</b><small data-i18n="fact3_s">LLM-Integration, RAG, MLOps — KI-Systeme bis in die Produktion bringen</small></div></div>
+        <div class="fact"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h3M11 16.5h3"/></svg></div><div><b data-i18n="fact4_t">Self-Hosting</b><small data-i18n="fact4_s">k3s-Cluster, eigener Mailserver, GitLab, CI/CD</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="career">
+  <div class="container">
+    <h2 class="sec-title fade" data-i18n="cv_title">Mein <span>Werdegang</span></h2>
+    <div class="timeline" style="margin-top:40px">
+      <div class="tl-item fade">
+        <div class="when" data-i18n="cv1_when">Seit 09/2021</div>
+        <h3 data-i18n="cv1_t">Data Warehouse Developer</h3>
+        <div class="where">Witron Logistik + Informatik GmbH · Parkstein</div>
+        <p data-i18n="cv1_p">Enterprise-Data-Warehouse-Lösungen für internationale Kunden: ETL-Pipelines (Stage/Core/Mart), verteilte Monitoring-Plattformen (React, C#, Blazor), Oracle-Performance-Tuning und GoldenGate, Automatisierung von Datenintegrations-Workflows, Behebung kritischer Produktionsprobleme in verteilten Systemen. Agile Teams (Scrum), Git/Gitflow.</p>
+      </div>
+      <div class="tl-item fade">
+        <div class="when" data-i18n="cv2_when">Seit 2026</div>
+        <h3>B.Sc. Applied Artificial Intelligence</h3>
+        <div class="where">IU Internationale Hochschule</div>
+        <p data-i18n="cv2_p">Berufsbegleitendes Studium der Angewandten Künstlichen Intelligenz — parallel zur Vollzeit-Tätigkeit als Data Engineer.</p>
+      </div>
+      <div class="tl-item fade">
+        <div class="when">2018 – 01/2021</div>
+        <h3 data-i18n="cv3_t">Ausbildung Fachinformatiker Anwendungsentwicklung</h3>
+        <div class="where">Witron Logistik + Informatik GmbH · Parkstein</div>
+        <p data-i18n="cv3_p">Abgeschlossene Ausbildung zum Fachinformatiker für Anwendungsentwicklung.</p>
+      </div>
+      <div class="tl-item fade">
+        <div class="when" data-i18n="cv4_when">Zertifikate</div>
+        <h3 data-i18n="cv4_t">Weiterbildung</h3>
+        <div class="where"></div>
+        <p data-i18n="cv4_p">Oracle Performance Tuning · Oracle Database Administration · Oracle GoldenGate · Qlik Sense · AWS Certified Solutions Architect – Associate (in Vorbereitung)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--bg2)">
+  <div class="container">
+    <h2 class="sec-title fade"><span>Skills</span></h2>
+    <p class="sec-sub fade" data-i18n="skills_sub">Technologien, mit denen ich regelmäßig arbeite — aus echten Projekten, nicht aus Tutorials.</p>
+    <div class="skills-grid">
+      <div class="skill-card fade"><h3><span class="dot"></span><span data-i18n="sk1">Sprachen</span></h3><div class="tags"><span class="tag">C#</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">SQL</span></div></div>
+      <div class="skill-card fade"><h3><span class="dot"></span><span data-i18n="sk2">Frameworks & Web</span></h3><div class="tags"><span class="tag">.NET / ASP.NET Core</span><span class="tag">Blazor (Server + WASM)</span><span class="tag">.NET MAUI</span><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">SignalR</span><span class="tag">Tailwind CSS</span><span class="tag">Chrome Extension (Manifest V3)</span></div></div>
+      <div class="skill-card fade"><h3><span class="dot"></span><span data-i18n="sk3">Infrastruktur & Ops</span></h3><div class="tags"><span class="tag">Kubernetes / k3s</span><span class="tag">Docker</span><span class="tag">NGINX Gateway</span><span class="tag">Linux</span><span class="tag">CI/CD (GitHub Actions)</span><span class="tag">GitOps (Flux CD)</span><span class="tag">DNS / TLS / Mail</span></div></div>
+      <div class="skill-card fade"><h3><span class="dot"></span><span data-i18n="sk4">Daten</span></h3><div class="tags"><span class="tag">Data Warehousing</span><span class="tag">ETL (Stage/Core/Mart)</span><span class="tag">Oracle / SQL / PL-SQL</span><span class="tag">Oracle GoldenGate</span><span class="tag">Kafka</span><span class="tag">Qlik Sense</span><span class="tag">PostgreSQL / SQLite</span></div></div>
+      <div class="skill-card fade"><h3><span class="dot"></span><span data-i18n="sk5">AI Engineering</span></h3><div class="tags"><span class="tag">LLM-Integration</span><span class="tag">RAG</span><span class="tag">LangGraph / Agentic AI</span><span class="tag">Model Context Protocol (MCP)</span><span class="tag">Ollama</span><span class="tag">ML.NET</span><span class="tag">RAGAS-Evaluation</span></div></div>
+      <div class="skill-card fade"><h3><span class="dot"></span><span data-i18n="sk6">IoT & Smart Home</span></h3><div class="tags"><span class="tag">Home Assistant</span><span class="tag">HACS-Integrationen</span><span class="tag">TCP/IoT-Protokolle</span><span class="tag">NFC</span><span class="tag">Raspberry Pi</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="sec-title fade" data-i18n="proj_title">Meine <span>Projekte</span></h2>
+    <p class="sec-sub fade" data-i18n="proj_sub">Eine Auswahl selbst entwickelter und selbst gehosteter Projekte — vom HR-System bis zum E-Scooter-Flotten-Backend.</p>
+    <div class="filters fade" id="filters"></div>
+    <div class="proj-grid" id="proj-grid"></div>
+  </div>
+</section>
+
+<section id="homelab" style="background:var(--bg2)">
+  <div class="container">
+    <h2 class="sec-title fade"><span>Homelab</span> &amp; Infrastruktur</h2>
+    <p class="sec-sub fade" data-i18n="hl_sub">Meine Projekte laufen nicht nur auf localhost — sie sind in meiner eigenen Infrastruktur produktiv im Einsatz.</p>
+    <div class="hl-wrap fade">
+      <div class="hl-grid">
+        <div class="hl-item"><div class="ico">☸️</div><div><b>k3s-Kubernetes-Cluster</b><small data-i18n="hl1">Multi-Node auf Raspberry Pi, Gateway API, HA-Deployments mit Anti-Affinity</small></div></div>
+        <div class="hl-item"><div class="ico">📬</div><div><b data-i18n="hl2t">Eigener Mailserver</b><small data-i18n="hl2">Stalwart Mail auf VPS — SPF, DKIM, DMARC, automatisiertes DNS über Cloudflare-API</small></div></div>
+        <div class="hl-item"><div class="ico">🦊</div><div><b data-i18n="hl3t">Self-hosted GitLab</b><small data-i18n="hl3">Eigene Git-Instanz mit CI/CD-Pipelines für alle privaten Projekte</small></div></div>
+        <div class="hl-item"><div class="ico">📈</div><div><b>Monitoring</b><small data-i18n="hl4">Eigenentwickeltes Cluster-Monitoring (piwatch) mit Live-Metriken und Failover-Tests</small></div></div>
+        <div class="hl-item"><div class="ico">🏠</div><div><b>Home Assistant</b><small data-i18n="hl5">Smart-Home-Zentrale mit selbst entwickelten HACS-Integrationen</small></div></div>
+        <div class="hl-item"><div class="ico">🔐</div><div><b data-i18n="hl6t">Netzwerk & Security</b><small data-i18n="hl6">Firewalls, Reverse Proxies, Let's Encrypt, UniFi-Kamera-Infrastruktur</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-box fade">
+      <h2 class="sec-title" data-i18n="c_title">Lass uns <span>reden</span></h2>
+      <p class="sec-sub" style="margin-bottom:0" data-i18n="c_sub">Mein Ziel ist eine feste Stelle als AI Engineer. Wenn Sie eine spannende Position im AI-Bereich zu besetzen haben, freue ich mich über Ihre Nachricht.</p>
+      <div class="links">
+        <a class="btn btn-primary" href="mailto:koerber.lukas@t-online.de">✉️ koerber.lukas@t-online.de</a>
+        <a class="btn btn-ghost" href="https://github.com/lukislp" target="_blank" rel="noopener">
+          <svg class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          github.com/lukislp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>© <span id="year"></span> Lukas Körber · lktec.org</div>
+    <div><a href="impressum.html" data-i18n="f_imp">Impressum &amp; Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+const projects = [
+ {name:"Zeitbuchungssystem",cat:"web",tags:[".NET 10","Blazor WASM","PostgreSQL","Docker"],
+  de:"Zeiterfassungs- und HR-System: Zeitbuchungen, Urlaubs- und Krankmeldungen, Teamkalender und PDF-Lohnabrechnung. Auth mit 2FA, Passkeys und NFC-Stempeluhr-Terminal.",
+  en:"Time-tracking and HR system: bookings, vacation & sick-leave management, team calendar and PDF payroll. Auth with 2FA, passkeys and an NFC punch-clock terminal."},
+ {name:"Lagersystem",cat:"web",tags:["Blazor Server",".NET","ML.NET","EF Core"],gh:"https://github.com/lukislp/Lagersystem",
+  de:"Lagerverwaltung mit Barcode-Scanning, Chargenverwaltung und Analytics. ML-Prognosen, 7 Backup-Provider (S3, Azure, Google Drive u.a.) und lokale KI-Anbindung über Ollama.",
+  en:"Inventory management with barcode scanning, batch tracking and analytics. ML forecasts, 7 backup providers (S3, Azure, Google Drive, …) and local AI integration via Ollama."},
+ {name:"OKAI Fleet Backend",cat:"iot",tags:["Node.js 22","Express","SQLite","IoT/TCP"],
+  de:"Self-hosted Flotten-Backend für OKAI-E-Scooter: eigener IoT-TCP-Server, Live-Karte mit Sperr-/Batteriestatus, Rollen-Login mit Entra-ID-SSO, Fahrten-Tracking und Geräte-Simulator.",
+  en:"Self-hosted fleet backend for OKAI e-scooters: custom IoT TCP server, live map with lock/battery status, role-based login with Entra ID SSO, trip tracking and a device simulator."},
+ {name:"StudyLife",cat:"studylife",sub:"webapp",tags:["Blazor WASM","ASP.NET Core","WebAuthn","i18n"],gh:"https://github.com/lukislp/studylife",demo:"https://studylife-demo.lktec.org",
+  de:"Lernorganisation mit Kalender, Fokus-Timer und Lernzielen als Blazor-WebAssembly-Web-App. Passwortloser Passkey-Login, 26 Sprachen und optionale Home-Assistant-Integration.",
+  en:"Study organizer with calendar, focus timer and learning goals as a Blazor WebAssembly web app. Passwordless passkey login, 26 languages and optional Home Assistant integration."},
+ {name:"StudyLife AI",cat:"studylife",sub:"addon",tags:["LangGraph","FastAPI","RAG","Ollama"],gh:"https://github.com/lukislp/studylife-ai",
+  de:"KI-Service für StudyLife: RAG-gestützter Lernassistent mit agentischen Aktionen (LangGraph + FastAPI), quellenbelegte Antworten über eigene Notizen und automatisierte RAGAS-Eval-Pipeline in CI. Self-hosted auf k3s, lokale LLMs über Ollama.",
+  en:"AI service for StudyLife: RAG-powered study assistant with agentic actions (LangGraph + FastAPI), source-cited answers over your own notes and an automated RAGAS eval pipeline in CI. Self-hosted on k3s with local LLMs via Ollama."},
+ {name:"StudyLife MCP",cat:"studylife",sub:"addon",tags:["MCP","Python","Claude"],gh:"https://github.com/lukislp/studylife-mcp",pypi:"https://pypi.org/project/studylife-mcp/",
+  de:"MCP-Server, der StudyLife-Daten (Kurse, Sessions, Notizen, Lernziele) für Claude und andere MCP-Clients bereitstellt.",
+  en:"MCP server exposing StudyLife data (courses, sessions, notes, goals) to Claude and other MCP clients."},
+ {name:"StudyLife App",cat:"studylife",sub:"mobile",tags:[".NET MAUI","iOS/Android","Offline-Sync"],gh:"https://github.com/lukislp/studylife-app",
+  de:"Native .NET-MAUI-Begleit-App zu StudyLife für iOS, Android, macOS und Windows — Offline-Sync, Timer und Kalender unterwegs.",
+  en:"Native .NET MAUI companion app for StudyLife on iOS, Android, macOS and Windows — offline sync, timers and calendar on the go."},
+ {name:"StudyLife Capture",cat:"studylife",sub:"extension",tags:["Chrome Extension","Manifest V3","TypeScript","AI-Enrichment"],gh:"https://github.com/lukislp/studylife-capture",store:"https://chromewebstore.google.com/detail/studylife-capture/glhegeoapkifmhodpnbfjgijlflkdglh",
+  de:"Chrome-Erweiterung (Manifest V3, TypeScript) zum Speichern von markiertem Text oder ganzen Artikeln als Notizen in StudyLife — KI-Anreicherung (Kurszuordnung, Tags, Zusammenfassung) über studylife-ai, Artikel-Extraktion via Mozilla Readability, sofortige Such-Indexierung.",
+  en:"Chrome extension (Manifest V3, TypeScript) for saving selected text or whole articles into StudyLife as notes — AI enrichment (course matching, tags, summary) via studylife-ai, full-article extraction via Mozilla Readability, immediate search indexing."},
+ {name:"StudyLife Focus",cat:"studylife",sub:"extension",tags:["Chrome Extension","Manifest V3","TypeScript","Spotify"],gh:"https://github.com/lukislp/studylife-focus",store:"https://chromewebstore.google.com/detail/studylife-focus/bhjoeghhdmaoepmbklbcbdkfnjbgclbh",
+  de:"Chrome-Erweiterung (Manifest V3, TypeScript) mit zwei unabhängig schaltbaren Funktionen für StudyLifes Fokus-Timer: Guard blockiert oder erlaubt Seiten während einer Session (Allow-/Blocklist), Tune wechselt automatisch zwischen Spotify-Playlists für Fokus und Pause.",
+  en:"Chrome extension (Manifest V3, TypeScript) with two independently-toggleable features for StudyLife's focus timer: Guard blocks or allows sites during a session (allowlist/blocklist), Tune automatically switches Spotify playlists for focus and breaks."},
+ {name:"StudyLife Webhooks",cat:"studylife",sub:"addon",tags:["FastAPI","Python","Webhooks","HMAC"],gh:"https://github.com/lukislp/studylife-webhooks",
+  de:"Webhook-Zustellungsdienst für StudyLife: signierte HTTP-Callbacks bei Session-/Lernziel-Events für eigene Automationen (Zapier, n8n, Discord, …), mehrere unabhängig benannte API-Keys pro Nutzer.",
+  en:"Webhook delivery microservice for StudyLife: signed HTTP callbacks on session/goal events to your own automations (Zapier, n8n, Discord, …), multiple independently-named API keys per user."},
+ {name:"StudyLife Marketplace",cat:"studylife",sub:"addon",tags:["JSON Schema","GitHub Actions","Node.js"],gh:"https://github.com/lukislp/studylife-marketplace",
+  de:"Öffentlicher Katalog für StudyLife-Add-ons: ein JSON-Manifest pro Add-on, Aufnahme per Pull Request, CI-validiert gegen ein JSON-Schema.",
+  en:"Public catalog of StudyLife add-ons: one JSON manifest per add-on, added via pull request, CI-validated against a JSON schema."},
+ {name:"StudyLife Developers",cat:"studylife",sub:"addon",tags:["Blazor Server","ASP.NET Core","OAuth"],gh:"https://github.com/lukislp/studylife-developers",
+  de:"Entwickler-Portal zur Registrierung eigener StudyLife-Add-ons: Client-ID, Scopes und Redirect-URI für einen generischen OAuth-artigen Consent-Flow gegen die eigene Instanz.",
+  en:"Developer portal for registering your own StudyLife add-ons: client ID, scopes and redirect URI backing a generic OAuth-style consent flow against your own instance."},
+ {name:"StudyLife CLI",cat:"studylife",sub:"addon",tags:["Python","Typer","OAuth"],gh:"https://github.com/lukislp/studylife-cli",pypi:"https://pypi.org/project/studylife-cli/",
+  de:"Kommandozeilen-Client für StudyLife: Notizen, Sessions, Lernziele, Fokus-Timer, Kurse, Studiengänge und Webhooks im Terminal, mit --json-Flag für Skripte. Registriert sich über denselben generischen OAuth-artigen Flow wie der Marketplace.",
+  en:"Command-line client for StudyLife: notes, sessions, course goals, focus timer, courses, study programs, and webhooks from the terminal, with a --json flag for scripting. Registers itself through the same generic OAuth-style flow as the marketplace."},
+ {name:"StudyLife Alexa",cat:"studylife",sub:"addon",tags:["Alexa Skill","Python","FastAPI","OAuth"],gh:"https://github.com/lukislp/studylife-alexa",
+  de:"Alexa-Skill-Backend für StudyLife: Kurse, Fokus-Timer-Status, Lernzeiten, Sessions, Lernziele, Studiengangs-Fortschritt und Notizen per Sprache abfragen — und Notizen anlegen. Ein eigener OAuth-2.0-Server (FastAPI) übernimmt das Account-Linking gegen die eigene Instanz, self-hosted auf k3s.",
+  en:"Alexa Skill backend for StudyLife: ask by voice for courses, focus-timer state, study time, sessions, course goals, study-program progress and notes — and create notes. A self-built OAuth 2.0 server (FastAPI) handles account linking against your own instance, self-hosted on k3s."},
+ {name:"piwatch",cat:"infra",tags:["FastAPI","React","k3s","WebSocket"],gh:"https://github.com/lukislp/piwatch",demo:"https://piwatch-demo.lktec.org",
+  de:"Echtzeit-Monitoring für meinen k3s-Cluster auf Raspberry Pi: Hardware-Metriken, Live-Logs, Healthchecks. Hochverfügbar mit 2 Replikas und getestetem Failover.",
+  en:"Real-time monitoring for my Raspberry Pi k3s cluster: hardware metrics, live logs, health checks. Highly available with 2 replicas and tested failover."},
+ {name:"homelab-hub",cat:"infra",tags:["React 19","TypeScript","Tailwind 4","k8s"],gh:"https://github.com/lukislp/homelab-hub",demo:"https://homelabhub-demo.lktec.org",
+  de:"Link-Dashboard im Terminal-Look: Live-Status-Probes mit Latenz, Kategorien, Drag & Drop, Favicon-Proxy. Server ohne Runtime-Dependencies, deployed hinter NGINX Gateway Fabric.",
+  en:"Terminal-style link dashboard: live status probes with latency, categories, drag & drop, favicon proxy. Zero-dependency server, deployed behind NGINX Gateway Fabric."},
+ {name:"homelab-autodoc",cat:"infra",tags:["Python","Kubernetes","LLM","Drift Detection"],gh:"https://github.com/lukislp/homelab-autodoc",
+  de:"Lebende Dokumentation für Kubernetes-Homelabs: ein read-only Collector sammelt den echten Cluster-Zustand (Deployments, Ports, Ingress, Volumes, Policies) mehrerer k3s-Cluster und generiert daraus eine wiki-artige, driftbewusste Doku-Seite — Fakten deterministisch aus dem Cluster, Prosa von einem LLM.",
+  en:"Living documentation for Kubernetes homelabs: a read-only collector inspects the real state of one or more k3s clusters (deployments, ports, ingress, volumes, policies) and turns it into a wiki-style, drift-aware doc site — facts deterministic from the cluster, prose from an LLM."},
+ {name:"HouseHoldPlanner",cat:"web",tags:["Blazor WASM","SignalR","JWT","Docker"],gh:"https://github.com/lukislp/HouseHoldPlanner",
+  de:"Haushaltsverwaltung für Familien und WGs: To-do-Listen, Essensplaner, Rezeptbibliothek, Kalender und Echtzeit-Chat über SignalR.",
+  en:"Household management for families and shared flats: to-do lists, meal planner, recipe library, calendar and real-time chat via SignalR."},
+ {name:"UnifiProtectDashboard",cat:"smarthome",tags:["Blazor Server","FFmpeg","hls.js","Docker"],gh:"https://github.com/lukislp/UnifiProtectDashboard",
+  de:"Dashboard für UniFi-Protect-Kameras: automatische Kamera-Erkennung, Live-Snapshots und HLS-Streams direkt im Browser. Docker-first mit Setup-Assistent.",
+  en:"Dashboard for UniFi Protect cameras: automatic camera discovery, live snapshots and HLS streams in the browser. Docker-first with a setup wizard."},
+ {name:"Lagersystem HACS",cat:"smarthome",tags:["Python","Home Assistant","HACS"],gh:"https://github.com/lukislp/Lagersystem-hacs",
+  de:"Home-Assistant-Integration für mein Lagersystem: 29 Entities (Sensoren, Binary Sensors, Buttons) mit Auto-Reload — als HACS-Integration mit GitHub-Releases veröffentlicht.",
+  en:"Home Assistant integration for my inventory system: 29 entities (sensors, binary sensors, buttons) with auto-reload — published as a HACS integration with GitHub releases."},
+ {name:"GitLab Monitor HACS",cat:"smarthome",tags:["Python","Home Assistant","HACS","GitLab API"],gh:"https://github.com/lukislp/gitlab-monitor-hacs",
+  de:"Home-Assistant-Integration (HACS) für GitLab: Pipelines, Issues, Merge Requests und Releases als Sensoren pro Repository — für gitlab.com und selbst gehostete Instanzen, vollständig über die UI konfigurierbar.",
+  en:"Home Assistant integration (HACS) for GitLab: pipelines, issues, merge requests and releases as sensors per repository — works with gitlab.com and self-hosted instances, fully UI-configurable."},
+ {name:"StudyLife HACS",cat:"studylife",sub:"addon",tags:["Python","Home Assistant","HACS"],gh:"https://github.com/lukislp/studylife-hacs",
+  de:"Home-Assistant-Integration (HACS) für StudyLife: Sessions, Timer, Streaks und Kursziele als Sensoren, inklusive ECTS-Fortschritt und Kalendern sowie Services zur Steuerung von Lernsessions aus Automationen.",
+  en:"Home Assistant integration (HACS) for StudyLife: sessions, timer, streaks and course goals as sensors, including ECTS progress and calendars, plus services to control study sessions from automations."},
+ {name:"ObdGarage",cat:"web",tags:["Blazor Server",".NET MAUI","ELM327","OBD2"],gh:"https://github.com/lukislp/ObdGarage",
+  de:"Self-hosted Multi-User-Fahrzeug-Tracker über OBD2: automatische Fahrtenprotokollierung, Wartungsplanung und Spritkosten-Tracking über eine Read-only-ELM327-Verbindung.",
+  en:"Self-hosted, multi-user OBD2 vehicle tracker: automatic trip logging, maintenance scheduling and fuel cost tracking via a read-only ELM327 connection."},
+ {name:"NotifyHub",cat:"lib",tags:[".NET","Web Push","APNs","FCM"],gh:"https://github.com/lukislp/NotifyHub",
+  de:".NET-Bibliothek für Push-Benachrichtigungen über eine kanalunabhängige API: Web Push (VAPID), Apple Push, Firebase, Webhooks und E-Mail — mit Tests und Demo-Projekt.",
+  en:".NET library for push notifications behind one channel-agnostic API: Web Push (VAPID), Apple Push, Firebase, webhooks and email — with tests and a demo project."}
+];
+
+const catNames = {
+  de:{all:"Alle",studylife:"StudyLife",web:"Web-Apps",mobile:"Mobile & Apps",iot:"IoT",ai:"KI & Agents",infra:"Infrastruktur",smarthome:"Smart Home",lib:"Bibliothek"},
+  en:{all:"All",studylife:"StudyLife",web:"Web apps",mobile:"Mobile & apps",iot:"IoT",ai:"AI & agents",infra:"Infrastructure",smarthome:"Smart home",lib:"Library"}
+};
+
+// Sub-grouping shown only within the "studylife" filter, in this fixed display order -
+// so the whole ecosystem's shape (one web app, one mobile app, two browser extensions, a
+// growing set of add-ons) is visible at a glance instead of one flat, undifferentiated list.
+const subOrder = ['webapp','mobile','extension','addon'];
+const subNames = {
+  de:{webapp:"Web-App",mobile:"Mobile & Apps",extension:"Chrome-Erweiterungen",addon:"Add-ons"},
+  en:{webapp:"Web app",mobile:"Mobile & apps",extension:"Chrome extensions",addon:"Add-ons"}
+};
+
+const i18n = {
+ de:{
+  meta_title:"Lukas Körber — Data Engineer & B.Sc.-Student Angewandte KI",
+  meta_desc:"Portfolio von Lukas Körber — B.Sc.-Student Angewandte Künstliche Intelligenz & Softwareentwickler. .NET, React, Kubernetes, Data Warehousing und AI Engineering.",
+  nav_about:"Über mich",nav_career:"Werdegang",nav_skills:"Skills",
+  cv_title:"Mein <span>Werdegang</span>",
+  cv1_when:"Seit 09/2021",cv1_t:"Data Warehouse Developer",
+  cv1_p:"Enterprise-Data-Warehouse-Lösungen für internationale Kunden: ETL-Pipelines (Stage/Core/Mart), verteilte Monitoring-Plattformen (React, C#, Blazor), Oracle-Performance-Tuning und GoldenGate, Automatisierung von Datenintegrations-Workflows, Behebung kritischer Produktionsprobleme in verteilten Systemen. Agile Teams (Scrum), Git/Gitflow.",
+  cv2_when:"Seit 2026",
+  cv2_p:"Berufsbegleitendes Studium der Angewandten Künstlichen Intelligenz — parallel zur Vollzeit-Tätigkeit als Data Engineer.",
+  cv3_t:"Ausbildung Fachinformatiker Anwendungsentwicklung",
+  cv3_p:"Abgeschlossene Ausbildung zum Fachinformatiker für Anwendungsentwicklung.",
+  cv4_when:"Zertifikate",cv4_t:"Weiterbildung",
+  cv4_p:"Oracle Performance Tuning · Oracle Database Administration · Oracle GoldenGate · Qlik Sense · AWS Certified Solutions Architect – Associate (in Vorbereitung)",nav_projects:"Projekte",nav_homelab:"Homelab",nav_contact:"Kontakt",
+  hero_kicker:"Data Engineer & B.Sc.-Student Angewandte KI",
+  hero_sub:"Data Engineer mit über 4 Jahren Erfahrung im Aufbau und Betrieb von Enterprise-Data-Warehouse-Systemen. Berufsbegleitend studiere ich Angewandte Künstliche Intelligenz (B.Sc.), entwickle Full-Stack-Anwendungen mit .NET und React und betreibe mein eigenes Kubernetes-Homelab.",
+  hero_cta1:"Projekte ansehen",
+  about_title:"Über <span>mich</span>",
+  about_p1:"Ich arbeite als Data-Warehouse-Developer bei der Witron Logistik + Informatik GmbH und baue dort seit 2021 Enterprise-DWH-Lösungen für internationale Kunden: ETL-Pipelines (Stage/Core/Mart), verteilte Monitoring-Plattformen mit React, C# und Blazor sowie Backend-Services für Datenverarbeitung, Fehlererkennung und automatisiertes Recovery — mit Python, C#, Oracle und Kafka.",
+  about_p2:"Berufsbegleitend studiere ich Angewandte Künstliche Intelligenz (B.Sc.) an der IU Internationalen Hochschule. Mein klares Ziel: als AI Engineer KI-Systeme von der Idee bis in die Produktion bringen — LLM-Integration, RAG-Systeme, Modell-Deployment und MLOps. Erste Schritte gehe ich schon heute: Anomalie-Erkennung mit ML.NET, lokale LLMs mit Ollama in eigenen Anwendungen und die Ops-Erfahrung aus vier Jahren Betrieb verteilter Produktionssysteme.",
+  about_p3:"Was mich von vielen unterscheidet: Ich betreibe meine Software selbst. Mein Homelab mit k3s-Kubernetes-Cluster, eigenem Mailserver, GitLab und Monitoring ist meine Spielwiese für Produktionsbetrieb — Deployment, TLS, DNS, Backups und alles, was dazwischen schiefgehen kann.",
+  fact1_t:"4+ Jahre Berufserfahrung",fact1_s:"Data-Warehouse-Developer bei Witron Logistik + Informatik",
+  fact2_t:"B.Sc. Angewandte KI",fact2_s:"Berufsbegleitendes Studium an der IU Internationalen Hochschule",
+  fact3_t:"Ziel: AI Engineer",fact3_s:"LLM-Integration, RAG, MLOps — KI-Systeme bis in die Produktion bringen",
+  fact4_t:"Self-Hosting",fact4_s:"k3s-Cluster, eigener Mailserver, GitLab, CI/CD",
+  skills_sub:"Technologien, mit denen ich regelmäßig arbeite — aus echten Projekten, nicht aus Tutorials.",
+  sk1:"Sprachen",sk2:"Frameworks & Web",sk3:"Infrastruktur & Ops",sk4:"Daten",sk5:"AI Engineering",sk6:"IoT & Smart Home",
+  proj_title:"Meine <span>Projekte</span>",
+  proj_sub:"Eine Auswahl selbst entwickelter und selbst gehosteter Projekte — vom HR-System bis zum E-Scooter-Flotten-Backend.",
+  hl_sub:"Meine Projekte laufen nicht nur auf localhost — sie sind in meiner eigenen Infrastruktur produktiv im Einsatz.",
+  hl1:"Multi-Node auf Raspberry Pi, Gateway API, HA-Deployments mit Anti-Affinity",
+  hl2t:"Eigener Mailserver",hl2:"Stalwart Mail auf VPS — SPF, DKIM, DMARC, automatisiertes DNS über Cloudflare-API",
+  hl3t:"Self-hosted GitLab",hl3:"Eigene Git-Instanz mit CI/CD-Pipelines für alle privaten Projekte",
+  hl4:"Eigenentwickeltes Cluster-Monitoring (piwatch) mit Live-Metriken und Failover-Tests",
+  hl5:"Smart-Home-Zentrale mit selbst entwickelten HACS-Integrationen",
+  hl6t:"Netzwerk & Security",hl6:"Firewalls, Reverse Proxies, Let's Encrypt, UniFi-Kamera-Infrastruktur",
+  c_title:"Lass uns <span>reden</span>",
+  c_sub:"Mein Ziel ist eine feste Stelle als AI Engineer. Wenn Sie eine spannende Position im AI-Bereich zu besetzen haben, freue ich mich über Ihre Nachricht.",
+  f_imp:"Impressum & Datenschutz"
+ },
+ en:{
+  meta_title:"Lukas Körber — Data Engineer & B.Sc. Applied AI Student",
+  meta_desc:"Portfolio of Lukas Körber — B.Sc. student in Applied Artificial Intelligence & software developer. .NET, React, Kubernetes, data warehousing and AI engineering.",
+  nav_about:"About",nav_career:"Experience",nav_skills:"Skills",
+  cv_title:"My <span>experience</span>",
+  cv1_when:"Since 09/2021",cv1_t:"Data Warehouse Developer",
+  cv1_p:"Enterprise data warehouse solutions for international customers: ETL pipelines (stage/core/mart), distributed monitoring platforms (React, C#, Blazor), Oracle performance tuning and GoldenGate, automation of data integration workflows, resolving critical production issues in distributed systems. Agile teams (Scrum), Git/Gitflow.",
+  cv2_when:"Since 2026",
+  cv2_p:"Part-time B.Sc. in Applied Artificial Intelligence — alongside my full-time role as a data engineer.",
+  cv3_t:"IT specialist apprenticeship (application development)",
+  cv3_p:"Completed apprenticeship as Fachinformatiker für Anwendungsentwicklung (IT specialist, application development).",
+  cv4_when:"Certificates",cv4_t:"Continuous learning",
+  cv4_p:"Oracle Performance Tuning · Oracle Database Administration · Oracle GoldenGate · Qlik Sense · AWS Certified Solutions Architect – Associate (in progress)",nav_projects:"Projects",nav_homelab:"Homelab",nav_contact:"Contact",
+  hero_kicker:"Data Engineer & B.Sc. Applied AI Student",
+  hero_sub:"Data engineer with 4+ years of experience building and operating enterprise data warehouse systems. I'm studying Applied Artificial Intelligence (B.Sc.) part-time, build full-stack applications with .NET and React and run my own Kubernetes homelab.",
+  hero_cta1:"View projects",
+  about_title:"About <span>me</span>",
+  about_p1:"I work as a data warehouse developer at Witron Logistik + Informatik GmbH, where I've been building enterprise DWH solutions for international customers since 2021: ETL pipelines (stage/core/mart), distributed monitoring platforms with React, C# and Blazor, and backend services for data processing, error detection and automated recovery — using Python, C#, Oracle and Kafka.",
+  about_p2:"Alongside my job, I'm studying Applied Artificial Intelligence (B.Sc.) at IU International University. My clear goal: working as an AI engineer, taking AI systems from idea to production — LLM integration, RAG systems, model deployment and MLOps. I'm already taking the first steps: anomaly detection with ML.NET, local LLMs with Ollama in my own applications, and four years of ops experience running distributed production systems.",
+  about_p3:"What sets me apart: I run my own software in production. My homelab with a k3s Kubernetes cluster, a self-hosted mail server, GitLab and monitoring is my playground for real operations — deployment, TLS, DNS, backups and everything that can break in between.",
+  fact1_t:"4+ years of experience",fact1_s:"Data warehouse developer at Witron Logistik + Informatik",
+  fact2_t:"B.Sc. Applied AI",fact2_s:"Part-time studies at IU International University",
+  fact3_t:"Goal: AI engineer",fact3_s:"LLM integration, RAG, MLOps — taking AI systems all the way to production",
+  fact4_t:"Self-hosting",fact4_s:"k3s cluster, own mail server, GitLab, CI/CD",
+  skills_sub:"Technologies I work with regularly — from real projects, not tutorials.",
+  sk1:"Languages",sk2:"Frameworks & web",sk3:"Infrastructure & ops",sk4:"Data",sk5:"AI engineering",sk6:"IoT & smart home",
+  proj_title:"My <span>projects</span>",
+  proj_sub:"A selection of self-built and self-hosted projects — from an HR system to an e-scooter fleet backend.",
+  hl_sub:"My projects don't just run on localhost — they run in production on my own infrastructure.",
+  hl1:"Multi-node on Raspberry Pi, Gateway API, HA deployments with anti-affinity",
+  hl2t:"Own mail server",hl2:"Stalwart Mail on a VPS — SPF, DKIM, DMARC, automated DNS via the Cloudflare API",
+  hl3t:"Self-hosted GitLab",hl3:"Own Git instance with CI/CD pipelines for all private projects",
+  hl4:"Self-built cluster monitoring (piwatch) with live metrics and failover tests",
+  hl5:"Smart home hub with self-developed HACS integrations",
+  hl6t:"Network & security",hl6:"Firewalls, reverse proxies, Let's Encrypt, UniFi camera infrastructure",
+  c_title:"Let's <span>talk</span>",
+  c_sub:"My goal is a permanent position as an AI engineer. If you have an interesting role in the AI space, I'd love to hear from you.",
+  f_imp:"Legal notice & privacy"
+ }
+};
+
+let lang = 'de';
+try { lang = localStorage.getItem('lang') || 'de'; } catch(e) {}
+let activeFilter = 'all';
+
+function setLang(l){
+  lang = l;
+  try { localStorage.setItem('lang', l); } catch(e) {}
+  document.documentElement.lang = l;
+  document.getElementById('btn-de').classList.toggle('active', l==='de');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.title = i18n[l].meta_title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if(metaDesc) metaDesc.setAttribute('content', i18n[l].meta_desc);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(i18n[l][key]!==undefined) el.innerHTML = i18n[l][key];
+  });
+  renderFilters(); renderProjects();
+}
+
+function renderFilters(){
+  const cats = ['all','studylife','web','mobile','iot','ai','infra','smarthome','lib'];
+  document.getElementById('filters').innerHTML = cats.map(c=>
+    `<button class="filter ${activeFilter===c?'active':''}" onclick="setFilter('${c}')">${catNames[lang][c]}</button>`).join('');
+}
+function setFilter(c){ activeFilter=c; renderFilters(); renderProjects(); }
+
+function renderProjects(){
+  const ghSvg = '<svg class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
+  const demoSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
+  const demoLabel = lang==='de' ? 'Live-Demo' : 'Live demo';
+  const storeSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>';
+  const storeLabel = 'Chrome Web Store';
+  const pypiSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v8a2 2 0 0 1-1 1.73l-6 3.46a2 2 0 0 1-2 0l-6-3.46A2 2 0 0 1 5 16V8"/><path d="M3.27 6.96 12 12l8.73-5.04"/><path d="M12 22V12"/></svg>';
+  const pypiLabel = 'PyPI';
+  const card = p=>`<div class="proj">
+      <div class="head"><h3>${p.name}</h3><span class="cat">${catNames[lang][p.cat]}</span></div>
+      <p>${p[lang]}</p>
+      <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      ${p.gh||p.demo||p.store||p.pypi?`<div class="proj-links">
+        ${p.gh?`<a href="${p.gh}" target="_blank" rel="noopener">${ghSvg}GitHub</a>`:''}
+        ${p.demo?`<a href="${p.demo}" target="_blank" rel="noopener">${demoSvg}${demoLabel}</a>`:''}
+        ${p.store?`<a href="${p.store}" target="_blank" rel="noopener">${storeSvg}${storeLabel}</a>`:''}
+        ${p.pypi?`<a href="${p.pypi}" target="_blank" rel="noopener">${pypiSvg}${pypiLabel}</a>`:''}
+      </div>`:''}
+    </div>`;
+
+  const filtered = projects.filter(p=>activeFilter==='all'||p.cat===activeFilter);
+
+  // Only the "studylife" filter groups by sub-category (webapp/mobile/extension/addon) - the
+  // ecosystem has grown into ten repos across four different kinds of thing, and a single flat
+  // grid no longer shows what actually exists at a glance. Every other filter stays a plain grid.
+  document.getElementById('proj-grid').innerHTML = activeFilter==='studylife'
+    ? subOrder
+        .map(s=>({s, items:filtered.filter(p=>p.sub===s)}))
+        .filter(g=>g.items.length)
+        .map(g=>`<div class="sub-group">
+            <div class="sub-heading">${subNames[lang][g.s]}</div>
+            <div class="sub-grid">${g.items.map(card).join('')}</div>
+          </div>`).join('')
+    : filtered.map(card).join('');
+}
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+function toggleNav(){
+  const links = document.querySelector('.nav-links');
+  const open = links.classList.toggle('open');
+  document.getElementById('nav-toggle').setAttribute('aria-expanded', open);
+}
+
+const navLinks = document.querySelectorAll('.nav-links a');
+navLinks.forEach(a=>a.addEventListener('click', ()=>{
+  document.querySelector('.nav-links').classList.remove('open');
+  document.getElementById('nav-toggle').setAttribute('aria-expanded', 'false');
+}));
+
+const spy = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px',threshold:0});
+document.querySelectorAll('section[id]').forEach(s=>spy.observe(s));
+
+document.getElementById('year').textContent = new Date().getFullYear();
+setLang(lang);
+</script>
+</body>
+</html>

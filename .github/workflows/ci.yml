@@ -1,0 +1,31 @@
+name: CI
+
+# The site is hand-written HTML with no build step, so CI exists to catch the mistakes that
+# hand-editing actually produces: a link or asset that no longer resolves, a sitemap that drifted
+# away from the pages that exist, a missing social-preview tag, an unclosed element. The check is
+# stdlib-only Python on purpose - this repository has no supply chain and should not gain one.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# One run per PR / per branch tip: a newer push cancels the run it supersedes.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate site
+        run: python3 tools/check-site.py public

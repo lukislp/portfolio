@@ -1,0 +1,10 @@
+# Weekly Dependabot updates. The site itself is static and has no dependencies, so GitHub Actions
+# is the only ecosystem here - which is exactly the set of pins that must not go stale.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "fix(ci)"
