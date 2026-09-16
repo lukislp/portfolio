@@ -18,7 +18,6 @@ import datetime
 import json
 import pathlib
 import re
-import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -149,16 +148,14 @@ def build_en(html: str, i18n: dict) -> str:
 
 
 def last_modified() -> str:
-    """Date of the last commit touching the page, so <lastmod> cannot go stale by hand."""
-    try:
-        out = subprocess.run(
-            ["git", "log", "-1", "--format=%cs", "--", "public/index.html"],
-            cwd=str(ROOT), capture_output=True, text=True, check=True,
-        ).stdout.strip()
-        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", out):
-            return out
-    except (OSError, subprocess.CalledProcessError):
-        pass
+    """The day the sitemap is generated.
+
+    Deriving this from git history is circular: generating the sitemap, committing it and then
+    re-deriving the value yields a different answer, so a consistent committed state is
+    unreachable - and a squash merge would move the date again and break CI on main. The build
+    date stays honest by a different route: any edit to public/index.html also changes the
+    generated English page, whose drift check forces a regeneration, which updates this date.
+    """
     return datetime.date.today().isoformat()
 
 
@@ -186,6 +183,12 @@ def build_sitemap() -> str:
             + "\n".join(entries) + "\n</urlset>\n")
 
 
+def ignore_lastmod(text: str) -> str:
+    """Everything but the <lastmod> value - that date is the build day and must not, on its own,
+    mark the file as drifted."""
+    return re.sub(r"<lastmod>[^<]*</lastmod>", "<lastmod/>", text)
+
+
 def main() -> int:
     check = "--check" in sys.argv[1:]
     html = SOURCE.read_text(encoding="utf-8")
@@ -196,7 +199,7 @@ def main() -> int:
     stale = []
     for path, content in artefacts:
         current = path.read_text(encoding="utf-8") if path.exists() else None
-        if current == content:
+        if current is not None and ignore_lastmod(current) == ignore_lastmod(content):
             print(str(path.relative_to(ROOT)) + ": up to date")
             continue
         if check:
