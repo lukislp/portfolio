@@ -191,7 +191,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
       <a id="btn-de" href="/" hreflang="de">DE</a>
       <a id="btn-en" class="active" href="/en" hreflang="en">EN</a>
     </div>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" onclick="toggleNav()">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" data-i18n-attr="aria-label:nav_toggle" aria-expanded="false" onclick="toggleNav()">
       <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
@@ -429,6 +429,7 @@ const i18n = {
  de:{
   meta_title:"Lukas Körber — Data Engineer & B.Sc.-Student Angewandte KI",
   meta_desc:"Portfolio von Lukas Körber — B.Sc.-Student Angewandte Künstliche Intelligenz & Softwareentwickler. .NET, React, Kubernetes, Data Warehousing und AI Engineering.",
+  nav_toggle:"Menü öffnen",
   nav_about:"Über mich",nav_career:"Werdegang",nav_skills:"Skills",
   cv_title:"Mein <span>Werdegang</span>",
   cv1_when:"Seit 09/2021",cv1_t:"Data Warehouse Developer",
@@ -468,6 +469,7 @@ const i18n = {
  en:{
   meta_title:"Lukas Körber — Data Engineer & B.Sc. Applied AI Student",
   meta_desc:"Portfolio of Lukas Körber — B.Sc. student in Applied Artificial Intelligence & software developer. .NET, React, Kubernetes, data warehousing and AI engineering.",
+  nav_toggle:"Open menu",
   nav_about:"About",nav_career:"Experience",nav_skills:"Skills",
   cv_title:"My <span>experience</span>",
   cv1_when:"Since 09/2021",cv1_t:"Data Warehouse Developer",
@@ -520,6 +522,13 @@ function setLang(l){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if(i18n[l][key]!==undefined) el.innerHTML = i18n[l][key];
+  });
+  // Übersetzbare Attribute, z.B. aria-label: "<attribut>:<schlüssel>", mehrere per Komma getrennt.
+  document.querySelectorAll('[data-i18n-attr]').forEach(el=>{
+    el.getAttribute('data-i18n-attr').split(',').forEach(pair=>{
+      const [attr, key] = pair.split(':').map(x=>x.trim());
+      if(attr && i18n[l][key]!==undefined) el.setAttribute(attr, i18n[l][key]);
+    });
   });
   renderFilters(); renderProjects();
 }
