@@ -23,6 +23,9 @@
 /impressum
   Cache-Control: public, max-age=300, must-revalidate
 
+/en
+  Cache-Control: public, max-age=300, must-revalidate
+
 /404.html
   Cache-Control: public, max-age=300, must-revalidate
 
