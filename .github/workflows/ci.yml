@@ -27,5 +27,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Generated files are in sync
+        # public/en/index.html and public/sitemap.xml are generated from public/index.html.
+        # Editing the source without regenerating would silently leave the English page showing
+        # the previous wording, which is exactly the kind of drift nobody notices.
+        run: python3 tools/build.py --check
       - name: Validate site
         run: python3 tools/check-site.py public

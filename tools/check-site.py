@@ -53,6 +53,7 @@ class PageParser(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.refs: list[tuple[str, int]] = []
         self.metas: list[dict[str, str]] = []
+        self.alternates: list[tuple[str, str]] = []
         self.stack: list[tuple[str, int]] = []
         self.unclosed: list[tuple[str, int]] = []
         self.title: str | None = None
@@ -62,6 +63,8 @@ class PageParser(HTMLParser):
         attr = {k: (v or "") for k, v in attrs}
         if tag == "meta":
             self.metas.append(attr)
+        if tag == "link" and "alternate" in attr.get("rel", "") and "hreflang" in attr:
+            self.alternates.append((attr["hreflang"], attr.get("href", "")))
         if tag == "title":
             self._in_title = True
         # <meta content="..."> is only a URL for the og:/twitter: image and url tags.
@@ -124,6 +127,8 @@ def resolve(root: Path, page: Path, raw: str) -> Path | None:
         return target / "index.html"
     # Cloudflare Pages serves HTML without the extension and 308-redirects "/x.html" to "/x",
     # so the canonical internal link "/impressum" has to resolve to public/impressum.html.
+    if target.is_dir():
+        return target / "index.html"
     if not target.suffix and not target.exists():
         with_html = target.with_name(target.name + ".html")
         if with_html.exists():
@@ -131,14 +136,14 @@ def resolve(root: Path, page: Path, raw: str) -> Path | None:
     return target
 
 
-def check_page(root: Path, page: Path) -> None:
+def check_page(root: Path, page: Path):
     parser = PageParser()
     try:
         parser.feed(page.read_text(encoding="utf-8"))
         parser.close()
     except Exception as exc:  # noqa: BLE001 - any parse failure is a finding
         fail(page, f"could not be parsed: {exc}")
-        return
+        return None
 
     leftover = [(tag, line) for tag, line in parser.stack if tag not in OPTIONAL_END_TAGS]
     for tag, line in parser.unclosed + leftover:
@@ -162,6 +167,35 @@ def check_page(root: Path, page: Path) -> None:
         for key, value in REQUIRED_META:
             if (key, value) not in present:
                 fail(page, f"missing <meta {key}=\"{value}\">")
+
+    return parser
+
+
+def check_hreflang(root: Path, pages: dict) -> None:
+    """hreflang only works when every page names every language INCLUDING itself, and when the
+    pages point back at each other. A one-directional set is silently ignored by Google, which
+    is the whole failure mode this check exists for."""
+    annotated = {p: parser for p, parser in pages.items() if parser and parser.alternates}
+    if not annotated:
+        return
+    for page, parser in annotated.items():
+        langs = {lang for lang, _ in parser.alternates}
+        if "x-default" not in langs:
+            fail(page, "has hreflang links but no x-default")
+        for lang, href in parser.alternates:
+            target = resolve(root, page, href)
+            if target is not None and not target.exists():
+                fail(page, f"hreflang=\"{lang}\" points at '{href}', which does not exist in {root}/")
+                continue
+            if target is None or lang == "x-default":
+                continue
+            other = pages.get(target)
+            if other is None or not other.alternates:
+                fail(page, f"hreflang=\"{lang}\" points at '{href}', which declares no hreflang back")
+                continue
+            back = {resolve(root, target, h) for _, h in other.alternates}
+            if page not in back:
+                fail(page, f"hreflang=\"{lang}\" -> '{href}' is not reciprocated: that page never links back here")
 
 
 def check_sitemap(root: Path) -> None:
@@ -198,8 +232,8 @@ def main() -> int:
         print(f"::error::no HTML pages found in '{root}'")
         return 1
 
-    for page in pages:
-        check_page(root, page)
+    parsed = {page: check_page(root, page) for page in pages}
+    check_hreflang(root, parsed)
     check_sitemap(root)
 
     for required in ("_headers", "404.html", "robots.txt", "favicon.svg"):
@@ -208,7 +242,7 @@ def main() -> int:
 
     for message in errors:
         print(f"::error::{message}")
-    checked = ", ".join(page.name for page in pages)
+    checked = ", ".join(page.relative_to(root).as_posix() for page in pages)
     print(f"checked {len(pages)} page(s): {checked}")
     print("FAILED" if errors else "ok")
     return 1 if errors else 0

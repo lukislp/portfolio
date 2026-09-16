@@ -10,16 +10,35 @@ notice. No framework, no build step, no backend, no dependencies.
 
 ```
 public/            everything that is served — this is the Cloudflare Pages output directory
-  index.html       the page itself (inline CSS + JS, DE/EN switch driven by data-i18n)
+  index.html       the German page and the single source of truth (inline CSS + JS)
+  en.html          the English page — GENERATED, do not edit
+  sitemap.xml      GENERATED
   impressum.html   legal notice, noindex
   404.html         not-found page
   _headers         response headers Cloudflare Pages applies (see below)
-  favicon.svg  og-image.png  robots.txt  sitemap.xml
+  favicon.svg  og-image.png  robots.txt
 tools/
-  check-site.py    the CI check: link/asset resolution, sitemap drift, meta tags, unclosed tags
+  build.py         renders public/en/ and sitemap.xml from public/index.html
+  check-site.py    link/asset resolution, sitemap drift, meta tags, hreflang, unclosed tags
 ```
 
 Nothing outside `public/` is published.
+
+## Languages
+
+`public/index.html` holds the German copy in its markup and both languages in its `i18n` object.
+`tools/build.py` renders the English variant into `public/en.html` with the English text baked
+into the HTML, so search engines get a real indexable URL per language instead of a switch that only
+exists in JavaScript. The two pages reference each other with `hreflang`, and the language toggle
+navigates between them.
+
+**Edit `public/index.html`, never `public/en.html`.** After editing:
+
+```bash
+python3 tools/build.py      # regenerate the English page and the sitemap
+```
+
+CI runs `tools/build.py --check` and fails if the generated files are out of date.
 
 ## Local preview
 
@@ -30,7 +49,7 @@ python3 -m http.server 8000 --directory public
 
 Two things only exist on a deployed Pages URL, not in the local server: `_headers` is a Pages
 feature and is ignored here, and Pages serves pages without the `.html` extension, so the
-`/impressum` link 404s locally while working in production. Both are verified on the preview
+`/impressum` and `/en` links 404 locally while working in production. Both are verified on the preview
 deployment a pull request produces.
 
 ## Checks
