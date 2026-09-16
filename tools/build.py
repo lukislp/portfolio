@@ -148,10 +148,12 @@ def build_en(html: str, i18n: dict) -> str:
          '<meta property="og:locale" content="en_US">'),
         ('<meta property="og:locale:alternate" content="en_US">',
          '<meta property="og:locale:alternate" content="de_DE">'),
-        ('<a id="btn-de" class="active" href="/" hreflang="de">DE</a>',
+        # The active language marker moves with the page: class for the eye, aria-current for
+        # screen readers. Leaving aria-current on the German link would announce the wrong one.
+        ('<a id="btn-de" class="active" aria-current="true" href="/" hreflang="de">DE</a>',
          '<a id="btn-de" href="/" hreflang="de">DE</a>'),
         ('<a id="btn-en" href="/en" hreflang="en">EN</a>',
-         '<a id="btn-en" class="active" href="/en" hreflang="en">EN</a>'),
+         '<a id="btn-en" class="active" aria-current="true" href="/en" hreflang="en">EN</a>'),
         ('"url": "https://lktec.org/"', '"url": "https://lktec.org/en"'),
     ]
     for old, new in replacements:

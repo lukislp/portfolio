@@ -57,6 +57,17 @@
   --radius:14px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+
+/* Sichtbare Fokusanzeige. Ohne eigene Regel bleibt nur der Browser-Standardring, der auf diesem
+   dunklen Design kaum zu erkennen ist (WCAG 2.4.11). Auf akzentfarbenen Flächen würde ein
+   akzentfarbener Ring verschwinden - dort wird auf die Textfarbe gewechselt. */
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.btn-primary:focus-visible,.filter.active:focus-visible,.lang-toggle a.active:focus-visible{outline-color:var(--text)}
+
+/* Skip-Link: erste fokussierbare Stelle der Seite, sichtbar nur bei Tastaturfokus (WCAG 2.4.1). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--accent);color:#04211d;padding:12px 20px;font-weight:700;border-radius:0 0 10px 0}
+.skip-link:focus{left:0}
+main:focus{outline:none}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',sans-serif;line-height:1.6;overflow-x:hidden}
 ::selection{background:rgba(79,209,197,.3)}
@@ -174,6 +185,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main" data-i18n="skip">Zum Inhalt springen</a>
 
 <nav>
   <div class="nav-inner">
@@ -187,14 +199,16 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
       <a href="#contact" data-i18n="nav_contact">Kontakt</a>
     </div>
     <div class="lang-toggle">
-      <a id="btn-de" class="active" href="/" hreflang="de">DE</a>
+      <a id="btn-de" class="active" aria-current="true" href="/" hreflang="de">DE</a>
       <a id="btn-en" href="/en" hreflang="en">EN</a>
     </div>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" data-i18n-attr="aria-label:nav_toggle" aria-expanded="false" onclick="toggleNav()">
-      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
 </nav>
+
+<main id="main" tabindex="-1">
 
 <header class="hero">
   <div class="container hero-content">
@@ -212,7 +226,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
     <div class="cta-row">
       <a class="btn btn-primary" href="#projects" data-i18n="hero_cta1">Projekte ansehen</a>
       <a class="btn btn-ghost" href="https://github.com/lukislp" target="_blank" rel="noopener">
-        <svg class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <svg aria-hidden="true" class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
         GitHub
       </a>
     </div>
@@ -229,10 +243,10 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
         <p data-i18n="about_p3">Was mich von vielen unterscheidet: Ich betreibe meine Software selbst. Mein Homelab mit k3s-Kubernetes-Cluster, eigenem Mailserver, GitLab und Monitoring ist meine Spielwiese für Produktionsbetrieb — Deployment, TLS, DNS, Backups und alles, was dazwischen schiefgehen kann.</p>
       </div>
       <div class="about-facts fade">
-        <div class="fact"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18"/></svg></div><div><b data-i18n="fact1_t">4+ Jahre Berufserfahrung</b><small data-i18n="fact1_s">Data-Warehouse-Developer bei Witron Logistik + Informatik</small></div></div>
-        <div class="fact"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 1 8l11 5 9-4.09V15"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5"/></svg></div><div><b data-i18n="fact2_t">B.Sc. Angewandte KI</b><small data-i18n="fact2_s">Berufsbegleitendes Studium an der IU Internationalen Hochschule</small></div></div>
-        <div class="fact"><div class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div><div><b data-i18n="fact3_t">Ziel: AI Engineer</b><small data-i18n="fact3_s">LLM-Integration, RAG, MLOps — KI-Systeme bis in die Produktion bringen</small></div></div>
-        <div class="fact"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h3M11 16.5h3"/></svg></div><div><b data-i18n="fact4_t">Self-Hosting</b><small data-i18n="fact4_s">k3s-Cluster, eigener Mailserver, GitLab, CI/CD</small></div></div>
+        <div class="fact"><div class="ico"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18"/></svg></div><div><b data-i18n="fact1_t">4+ Jahre Berufserfahrung</b><small data-i18n="fact1_s">Data-Warehouse-Developer bei Witron Logistik + Informatik</small></div></div>
+        <div class="fact"><div class="ico"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 1 8l11 5 9-4.09V15"/><path d="M5 10.5V16c0 1.5 3.1 3 7 3s7-1.5 7-3v-5.5"/></svg></div><div><b data-i18n="fact2_t">B.Sc. Angewandte KI</b><small data-i18n="fact2_s">Berufsbegleitendes Studium an der IU Internationalen Hochschule</small></div></div>
+        <div class="fact"><div class="ico"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div><div><b data-i18n="fact3_t">Ziel: AI Engineer</b><small data-i18n="fact3_s">LLM-Integration, RAG, MLOps — KI-Systeme bis in die Produktion bringen</small></div></div>
+        <div class="fact"><div class="ico"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h3M11 16.5h3"/></svg></div><div><b data-i18n="fact4_t">Self-Hosting</b><small data-i18n="fact4_s">k3s-Cluster, eigener Mailserver, GitLab, CI/CD</small></div></div>
       </div>
     </div>
   </div>
@@ -319,13 +333,15 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
       <div class="links">
         <a class="btn btn-primary" href="mailto:koerber.lukas@t-online.de">✉️ koerber.lukas@t-online.de</a>
         <a class="btn btn-ghost" href="https://github.com/lukislp" target="_blank" rel="noopener">
-          <svg class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          <svg aria-hidden="true" class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
           github.com/lukislp
         </a>
       </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="foot-inner">
@@ -428,6 +444,7 @@ const i18n = {
  de:{
   meta_title:"Lukas Körber — Data Engineer & B.Sc.-Student Angewandte KI",
   meta_desc:"Portfolio von Lukas Körber — B.Sc.-Student Angewandte Künstliche Intelligenz & Softwareentwickler. .NET, React, Kubernetes, Data Warehousing und AI Engineering.",
+  skip:"Zum Inhalt springen",
   nav_toggle:"Menü öffnen",
   nav_about:"Über mich",nav_career:"Werdegang",nav_skills:"Skills",
   cv_title:"Mein <span>Werdegang</span>",
@@ -468,6 +485,7 @@ const i18n = {
  en:{
   meta_title:"Lukas Körber — Data Engineer & B.Sc. Applied AI Student",
   meta_desc:"Portfolio of Lukas Körber — B.Sc. student in Applied Artificial Intelligence & software developer. .NET, React, Kubernetes, data warehousing and AI engineering.",
+  skip:"Skip to content",
   nav_toggle:"Open menu",
   nav_about:"About",nav_career:"Experience",nav_skills:"Skills",
   cv_title:"My <span>experience</span>",
@@ -513,8 +531,11 @@ let activeFilter = 'all';
 function setLang(l){
   lang = l;
   document.documentElement.lang = l;
-  document.getElementById('btn-de').classList.toggle('active', l==='de');
-  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  ['de','en'].forEach(code=>{
+    const el = document.getElementById('btn-' + code);
+    el.classList.toggle('active', l===code);
+    if(l===code) el.setAttribute('aria-current','true'); else el.removeAttribute('aria-current');
+  });
   document.title = i18n[l].meta_title;
   const metaDesc = document.querySelector('meta[name="description"]');
   if(metaDesc) metaDesc.setAttribute('content', i18n[l].meta_desc);
@@ -535,17 +556,17 @@ function setLang(l){
 function renderFilters(){
   const cats = ['all','studylife','web','mobile','iot','ai','infra','smarthome','lib'];
   document.getElementById('filters').innerHTML = cats.map(c=>
-    `<button class="filter ${activeFilter===c?'active':''}" onclick="setFilter('${c}')">${catNames[lang][c]}</button>`).join('');
+    `<button class="filter ${activeFilter===c?'active':''}" aria-pressed="${activeFilter===c}" onclick="setFilter('${c}')">${catNames[lang][c]}</button>`).join('');
 }
 function setFilter(c){ activeFilter=c; renderFilters(); renderProjects(); }
 
 function renderProjects(){
-  const ghSvg = '<svg class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
-  const demoSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
+  const ghSvg = '<svg aria-hidden="true" class="gh-ico" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
+  const demoSvg = '<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
   const demoLabel = lang==='de' ? 'Live-Demo' : 'Live demo';
-  const storeSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>';
+  const storeSvg = '<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>';
   const storeLabel = 'Chrome Web Store';
-  const pypiSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v8a2 2 0 0 1-1 1.73l-6 3.46a2 2 0 0 1-2 0l-6-3.46A2 2 0 0 1 5 16V8"/><path d="M3.27 6.96 12 12l8.73-5.04"/><path d="M12 22V12"/></svg>';
+  const pypiSvg = '<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v8a2 2 0 0 1-1 1.73l-6 3.46a2 2 0 0 1-2 0l-6-3.46A2 2 0 0 1 5 16V8"/><path d="M3.27 6.96 12 12l8.73-5.04"/><path d="M12 22V12"/></svg>';
   const pypiLabel = 'PyPI';
   const card = p=>`<div class="proj">
       <div class="head"><h3>${p.name}</h3><span class="cat">${catNames[lang][p.cat]}</span></div>
@@ -593,7 +614,11 @@ navLinks.forEach(a=>a.addEventListener('click', ()=>{
 const spy = new IntersectionObserver(es=>{
   es.forEach(e=>{
     if(e.isIntersecting){
-      navLinks.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+      navLinks.forEach(l=>{
+          const active = l.getAttribute('href')==='#'+e.target.id;
+          l.classList.toggle('active', active);
+          if(active) l.setAttribute('aria-current','true'); else l.removeAttribute('aria-current');
+        });
     }
   });
 },{rootMargin:'-45% 0px -50% 0px',threshold:0});
