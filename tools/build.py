@@ -104,6 +104,34 @@ def replace_i18n_elements(html: str, strings: dict) -> str:
     return out
 
 
+def replace_i18n_attributes(html: str, strings: dict) -> str:
+    """Translate attributes marked with data-i18n-attr="<attribute>:<key>".
+
+    Attributes are invisible in the rendered text, so an untranslated one survives every visual
+    check - this is exactly how aria-label="Menü öffnen" ended up being read out in German on the
+    English page.
+    """
+    marker = re.compile(r'<[a-z0-9]+[^>]*data-i18n-attr="([^"]+)"[^>]*>', re.I)
+    markers = marker.findall(html)
+    # Silent no-op guard. If the page carries markers but the pattern matches none of them, the
+    # English page just keeps the German attribute and nothing complains - which is exactly how
+    # aria-label="Menü öffnen" reached the English page unnoticed in the first place.
+    if "data-i18n-attr" in html and not markers:
+        raise SystemExit("the page contains data-i18n-attr but no marker matched - the pattern is broken")
+    out = html
+    for tag in markers:
+        for pair in tag.split(","):
+            attr, _, key = pair.partition(":")
+            attr, key = attr.strip(), key.strip()
+            if key not in strings:
+                raise SystemExit('data-i18n-attr references "' + key + '", which the i18n object does not define')
+            pattern = re.compile(r'(<[a-z0-9]+[^>]*' + re.escape(attr) + r'=")[^"]*("[^>]*data-i18n-attr=)', re.I)
+            out, count = pattern.subn(lambda m: m.group(1) + esc(strings[key]) + m.group(2), out)
+            if count != 1:
+                raise SystemExit("expected exactly one element with " + attr + " for key " + key + ", found " + str(count))
+    return out
+
+
 def build_en(html: str, i18n: dict) -> str:
     en = i18n["en"]
     out = html
@@ -143,6 +171,7 @@ def build_en(html: str, i18n: dict) -> str:
     out = re.sub(r"<title>.*?</title>", "<title>" + esc(en["meta_title"]) + "</title>",
                  out, count=1, flags=re.S)
     out = replace_i18n_elements(out, en)
+    out = replace_i18n_attributes(out, en)
     out = out.replace("<!DOCTYPE html>", "<!DOCTYPE html>\n" + GENERATED_NOTE, 1)
     return out
 
