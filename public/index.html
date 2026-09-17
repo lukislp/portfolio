@@ -439,8 +439,8 @@ const projects = [
 ];
 
 const catNames = {
-  de:{all:"Alle",studylife:"StudyLife",web:"Web-Apps",mobile:"Mobile & Apps",iot:"IoT",ai:"KI & Agents",infra:"Infrastruktur",smarthome:"Smart Home",lib:"Bibliothek"},
-  en:{all:"All",studylife:"StudyLife",web:"Web apps",mobile:"Mobile & apps",iot:"IoT",ai:"AI & agents",infra:"Infrastructure",smarthome:"Smart home",lib:"Library"}
+  de:{all:"Alle",studylife:"StudyLife",web:"Web-Apps",iot:"IoT",infra:"Infrastruktur",smarthome:"Smart Home",lib:"Bibliothek"},
+  en:{all:"All",studylife:"StudyLife",web:"Web apps",iot:"IoT",infra:"Infrastructure",smarthome:"Smart home",lib:"Library"}
 };
 
 // Sub-grouping shown only within the "studylife" filter, in this fixed display order -
@@ -566,7 +566,7 @@ function setLang(l){
 }
 
 function renderFilters(){
-  const cats = ['all','studylife','web','mobile','iot','ai','infra','smarthome','lib'];
+  const cats = ['all','studylife','web','iot','infra','smarthome','lib'];
   document.getElementById('filters').innerHTML = cats.map(c=>
     `<button class="filter ${activeFilter===c?'active':''}" aria-pressed="${activeFilter===c}" onclick="setFilter('${c}')">${catNames[lang][c]}</button>`).join('');
 }
