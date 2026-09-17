@@ -395,6 +395,15 @@ const projects = [
  {name:"StudyLife Alexa",cat:"studylife",sub:"addon",tags:["Alexa Skill","Python","FastAPI","OAuth"],gh:"https://github.com/lukislp/studylife-alexa",
   de:"Alexa-Skill-Backend für StudyLife: Kurse, Fokus-Timer-Status, Lernzeiten, Sessions, Lernziele, Studiengangs-Fortschritt und Notizen per Sprache abfragen — und Notizen anlegen. Ein eigener OAuth-2.0-Server (FastAPI) übernimmt das Account-Linking gegen die eigene Instanz, self-hosted auf k3s.",
   en:"Alexa Skill backend for StudyLife: ask by voice for courses, focus-timer state, study time, sessions, course goals, study-program progress and notes — and create notes. A self-built OAuth 2.0 server (FastAPI) handles account linking against your own instance, self-hosted on k3s."},
+ {name:"StudyLife Telegram",cat:"studylife",sub:"addon",tags:["Telegram Bot","FastAPI","Python","OAuth"],gh:"https://github.com/lukislp/studylife-telegram",
+  de:"Telegram-Bot für StudyLife: Fokus-Timer starten, pausieren und stoppen, Tages- und Wochenstunden, nächstes Lernziel und Schnellnotizen im Chat, dazu Session-Erinnerungen und Ereignisse über studylife-webhooks. Jeder Chat verknüpft sein eigenes Konto per PKCE-Consent-Flow, Schlüssel verschlüsselt abgelegt. Self-hosted auf k3s.",
+  en:"Telegram bot for StudyLife: start, pause and stop the focus timer, today's and this week's hours, next course goal and quick notes in chat, plus session reminders and events via studylife-webhooks. Each chat links its own account through a PKCE consent flow, keys stored encrypted. Self-hosted on k3s."},
+ {name:"StudyLife VS Code",cat:"studylife",sub:"extension",tags:["VS Code Extension","TypeScript","esbuild","OAuth"],gh:"https://github.com/lukislp/studylife-vscode",
+  de:"VS-Code-Erweiterung für StudyLife: Fokus-Timer aus dem Editor steuern, Lernkennzahlen in der Statusleiste und Programmierzeit je Arbeitsbereich als Vorschlag für eine Lernsession — nie als stille Aufzeichnung. Anmeldung über den generischen OAuth-artigen Flow mit RFC-8252-Loopback.",
+  en:"VS Code extension for StudyLife: control the focus timer from the editor, study metrics in the status bar and coding time per workspace offered as a study session — never recorded silently. Signs in through the generic OAuth-style flow with an RFC 8252 loopback."},
+ {name:"StudyLife Display",cat:"studylife",sub:"addon",tags:["Raspberry Pi","E-Paper","Python","Pillow"],gh:"https://github.com/lukislp/studylife-display",
+  de:"E-Paper-Dashboard für StudyLife auf einem Raspberry Pi mit Waveshare-7,5\"-Panel: heutige Lernzeit, Serie, Prüfungs-Countdown, Wochenziel und Heatmap in fünf Layouts mit Auto-Modus. Web-Interface zum Umschalten und Verbinden des Kontos, Read-only-API-Key, systemd-Timer, Overlay-FS-tauglich mit Golden-Image-Tests ohne Hardware.",
+  en:"E-paper dashboard for StudyLife on a Raspberry Pi with a Waveshare 7.5\" panel: today's study time, streak, exam countdown, weekly goal and heatmap in five layouts with an auto mode. Web interface for switching layouts and connecting the account, read-only API key, systemd timer, overlay-filesystem-safe, golden-image tests without hardware."},
  {name:"piwatch",cat:"infra",tags:["FastAPI","React","k3s","WebSocket"],gh:"https://github.com/lukislp/piwatch",demo:"https://piwatch-demo.lktec.org",
   de:"Echtzeit-Monitoring für meinen k3s-Cluster auf Raspberry Pi: Hardware-Metriken, Live-Logs, Healthchecks. Hochverfügbar mit 2 Replikas und getestetem Failover.",
   en:"Real-time monitoring for my Raspberry Pi k3s cluster: hardware metrics, live logs, health checks. Highly available with 2 replicas and tested failover."},
@@ -437,8 +446,8 @@ const catNames = {
 // growing set of add-ons) is visible at a glance instead of one flat, undifferentiated list.
 const subOrder = ['webapp','mobile','extension','addon'];
 const subNames = {
-  de:{webapp:"Web-App",mobile:"Mobile & Apps",extension:"Chrome-Erweiterungen",addon:"Add-ons"},
-  en:{webapp:"Web app",mobile:"Mobile & apps",extension:"Chrome extensions",addon:"Add-ons"}
+  de:{webapp:"Web-App",mobile:"Mobile & Apps",extension:"Browser- & Editor-Erweiterungen",addon:"Add-ons"},
+  en:{webapp:"Web app",mobile:"Mobile & apps",extension:"Browser & editor extensions",addon:"Add-ons"}
 };
 
 const i18n = {
