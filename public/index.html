@@ -400,7 +400,7 @@ const projects = [
  {name:"StudyLife Telegram",cat:"studylife",sub:"addon",tags:["Telegram Bot","FastAPI","Python","OAuth"],gh:"https://github.com/lukislp/studylife-telegram",
   de:"Telegram-Bot für StudyLife: Fokus-Timer starten, pausieren und stoppen, Tages- und Wochenstunden, nächstes Lernziel und Schnellnotizen im Chat, dazu Session-Erinnerungen und Ereignisse über studylife-webhooks. Jeder Chat verknüpft sein eigenes Konto per PKCE-Consent-Flow, Schlüssel verschlüsselt abgelegt. Self-hosted auf k3s.",
   en:"Telegram bot for StudyLife: start, pause and stop the focus timer, today's and this week's hours, next course goal and quick notes in chat, plus session reminders and events via studylife-webhooks. Each chat links its own account through a PKCE consent flow, keys stored encrypted. Self-hosted on k3s."},
- {name:"StudyLife VS Code",cat:"studylife",sub:"extension",tags:["VS Code Extension","TypeScript","esbuild","OAuth"],gh:"https://github.com/lukislp/studylife-vscode",
+ {name:"StudyLife VS Code",cat:"studylife",sub:"extension",tags:["VS Code Extension","TypeScript","esbuild","OAuth"],gh:"https://github.com/lukislp/studylife-vscode",marketplace:"https://marketplace.visualstudio.com/items?itemName=lukislp.studylife-vscode",
   de:"VS-Code-Erweiterung für StudyLife: Fokus-Timer aus dem Editor steuern, Lernkennzahlen in der Statusleiste und Programmierzeit je Arbeitsbereich als Vorschlag für eine Lernsession — nie als stille Aufzeichnung. Anmeldung über den generischen OAuth-artigen Flow mit RFC-8252-Loopback.",
   en:"VS Code extension for StudyLife: control the focus timer from the editor, study metrics in the status bar and coding time per workspace offered as a study session — never recorded silently. Signs in through the generic OAuth-style flow with an RFC 8252 loopback."},
  {name:"StudyLife Display",cat:"studylife",sub:"addon",tags:["Raspberry Pi","E-Paper","Python","Pillow"],gh:"https://github.com/lukislp/studylife-display",
@@ -580,15 +580,18 @@ function renderProjects(){
   const storeLabel = 'Chrome Web Store';
   const pypiSvg = '<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v8a2 2 0 0 1-1 1.73l-6 3.46a2 2 0 0 1-2 0l-6-3.46A2 2 0 0 1 5 16V8"/><path d="M3.27 6.96 12 12l8.73-5.04"/><path d="M12 22V12"/></svg>';
   const pypiLabel = 'PyPI';
+  const marketplaceSvg = '<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 4 3 12 8 20"/><polyline points="16 4 21 12 16 20"/></svg>';
+  const marketplaceLabel = 'VS Code Marketplace';
   const card = p=>`<div class="proj">
       <div class="head"><h3>${p.name}</h3><span class="cat">${catNames[lang][p.cat]}</span></div>
       <p>${p[lang]}</p>
       <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-      ${p.gh||p.demo||p.store||p.pypi?`<div class="proj-links">
+      ${p.gh||p.demo||p.store||p.pypi||p.marketplace?`<div class="proj-links">
         ${p.gh?`<a href="${p.gh}" target="_blank" rel="noopener">${ghSvg}GitHub</a>`:''}
         ${p.demo?`<a href="${p.demo}" target="_blank" rel="noopener">${demoSvg}${demoLabel}</a>`:''}
         ${p.store?`<a href="${p.store}" target="_blank" rel="noopener">${storeSvg}${storeLabel}</a>`:''}
         ${p.pypi?`<a href="${p.pypi}" target="_blank" rel="noopener">${pypiSvg}${pypiLabel}</a>`:''}
+        ${p.marketplace?`<a href="${p.marketplace}" target="_blank" rel="noopener">${marketplaceSvg}${marketplaceLabel}</a>`:''}
       </div>`:''}
     </div>`;
 
